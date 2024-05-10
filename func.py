@@ -5,7 +5,6 @@ from reportlab.lib import colors
 from reportlab.platypus import Spacer
 from reportlab.platypus import PageBreak
 from reportlab.lib.units import inch
-# from datacleaning_script import listy
 import pandas as pd
 
 
@@ -153,17 +152,6 @@ def generate_pdf(filename):
     
 
 ''' PDF CREATION '''
-
-# list_of_empdata=[['1001', 'Sunando', 'Banerjee', '30', '13,750', '8,750', '1,250', '1,250', '-', '25,000', '130', '1,650', '-', 'nan', '1,780'],
-#                  ['1002', 'Prashanta', 'Mukherjee', '30', '12,100', '7,700', '1,100', '1,100', '-', '22,000', '130', '1,452', '-', '2000.0', '3,582'], 
-#                  ['1003', 'Sk', 'Razzaque', '30', '16,500', '10,500', '1,500', '1,500', '-', '30,000', '150', '1,980', '-', 'nan', '2,130'], 
-#                  ['1004', 'Biswajit', 'Sutradhar', '30', '13,750', '8,750', '1,250', '1,250', '-', '25,000', '130', '1,650', '-', '3000.0', '4,780'], 
-#                  ['1005', 'Sk', 'Alauddin', '30', '12,650', '8,050', '1,150', '1,150', '-', '23,000', '130', '1,518', '-', '5000.0', '6,648'], 
-#                  ['1006', 'Dudhkumar', 'Das', '30', '6,600', '4,200', '600', '600', '-', '12,000', '110', '792', '90', 'nan', '992']]
-
-# list_of_empdata=listy
-# no_of_emp = len(list_of_empdata)
-
 
 
 generate_pdf("salary_sheet")
