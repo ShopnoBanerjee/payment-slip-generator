@@ -6,6 +6,10 @@
 import pandas as pd
 import numpy as np
 
+
+# def listy(filename):
+#   df = pd.read_csv(f"{filename}.csv")
+
 df = pd.read_csv("salary_sheet.csv")
 
 df = df.rename(columns={"Name of the employees ":"name","ESI NO":"ESI no"})
@@ -28,7 +32,6 @@ for index, row in df.iterrows():
         words = words + ' '.join(row[col])+' '
         list=words.split()
         listy.append(list)
-
 # %%
 
 

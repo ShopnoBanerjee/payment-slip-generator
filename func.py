@@ -5,10 +5,15 @@ from reportlab.lib import colors
 from reportlab.platypus import Spacer
 from reportlab.platypus import PageBreak
 from reportlab.lib.units import inch
-from datacleaning_script import listy
+# from datacleaning_script import listy
+import pandas as pd
 
 
 '''ALL THE FUNCTIONS'''
+
+
+
+
 
 #function for creating payment slip
 def create_payment_slip(details, content):
@@ -72,10 +77,10 @@ def create_payment_slip(details, content):
 
 #what i want is that i create in a systematic form and that every 3 creations there is a pagebreak
 #total creations are suppose 30 i.e total employees whose payslips are to be made are 30 so 
-def generate_pdf(no_of_emp,list_of_empdata):
+def pdf_maker(no_of_emp,listy,filename):
     top_margin = 0.1
     bottom_margin = 0.1
-    doc = SimpleDocTemplate("payslip_demo.pdf", pagesize=letter,
+    doc = SimpleDocTemplate(f"{filename}_payslip.pdf", pagesize=letter,
                         topMargin=top_margin*inch, bottomMargin=bottom_margin*inch)
     content = []
     
@@ -119,23 +124,46 @@ def generate_pdf(no_of_emp,list_of_empdata):
         j=j+1
     
     doc.build(content)   
+       
     
-
+def generate_pdf(filename):
+    df = pd.read_csv(f"{filename}.csv")
+    df = df.rename(columns={"Name of the employees ":"name","ESI NO":"ESI no"})
+    df=df[['Emp. Code', 'Name of the employees','Actual','Basic', 'HRA ', 'conveyance', 'Washing',
+           'OT', 'TOTAL','P.T.', 'P.F.', 'ESI ','Adv.', 'Total.2']]
+    df=df.astype(str)
+    columns = [['Emp. Code', 'Name of the employees','Actual','Basic', 'HRA ', 'conveyance', 'Washing',
+       'OT', 'TOTAL','P.T.', 'P.F.', 'ESI ','Adv.', 'Total.2']]
+    list_of_emp=[]
+    for index, row in df.iterrows():
+        words=" "
+        list=[]
+        for col in columns:
+            words = words + ' '.join(row[col])+' '
+            list=words.split()
+            list_of_emp.append(list)
+    
+    
+    no_of_emp=len(list_of_emp)
+       
+    pdf_maker(no_of_emp,list_of_emp,filename)
+    
+    
+    
+    
 
 ''' PDF CREATION '''
 
-list_of_empdata=[['1001', 'Sunando', 'Banerjee', '30', '13,750', '8,750', '1,250', '1,250', '-', '25,000', '130', '1,650', '-', 'nan', '1,780'],
-                 ['1002', 'Prashanta', 'Mukherjee', '30', '12,100', '7,700', '1,100', '1,100', '-', '22,000', '130', '1,452', '-', '2000.0', '3,582'], 
-                 ['1003', 'Sk', 'Razzaque', '30', '16,500', '10,500', '1,500', '1,500', '-', '30,000', '150', '1,980', '-', 'nan', '2,130'], 
-                 ['1004', 'Biswajit', 'Sutradhar', '30', '13,750', '8,750', '1,250', '1,250', '-', '25,000', '130', '1,650', '-', '3000.0', '4,780'], 
-                 ['1005', 'Sk', 'Alauddin', '30', '12,650', '8,050', '1,150', '1,150', '-', '23,000', '130', '1,518', '-', '5000.0', '6,648'], 
-                 ['1006', 'Dudhkumar', 'Das', '30', '6,600', '4,200', '600', '600', '-', '12,000', '110', '792', '90', 'nan', '992']]
+# list_of_empdata=[['1001', 'Sunando', 'Banerjee', '30', '13,750', '8,750', '1,250', '1,250', '-', '25,000', '130', '1,650', '-', 'nan', '1,780'],
+#                  ['1002', 'Prashanta', 'Mukherjee', '30', '12,100', '7,700', '1,100', '1,100', '-', '22,000', '130', '1,452', '-', '2000.0', '3,582'], 
+#                  ['1003', 'Sk', 'Razzaque', '30', '16,500', '10,500', '1,500', '1,500', '-', '30,000', '150', '1,980', '-', 'nan', '2,130'], 
+#                  ['1004', 'Biswajit', 'Sutradhar', '30', '13,750', '8,750', '1,250', '1,250', '-', '25,000', '130', '1,650', '-', '3000.0', '4,780'], 
+#                  ['1005', 'Sk', 'Alauddin', '30', '12,650', '8,050', '1,150', '1,150', '-', '23,000', '130', '1,518', '-', '5000.0', '6,648'], 
+#                  ['1006', 'Dudhkumar', 'Das', '30', '6,600', '4,200', '600', '600', '-', '12,000', '110', '792', '90', 'nan', '992']]
 
-no_of_emp = len(list_of_empdata)
-
-generate_pdf(no_of_emp,list_of_empdata)
-
+# list_of_empdata=listy
+# no_of_emp = len(list_of_empdata)
 
 
 
-
+generate_pdf("salary_sheet")
