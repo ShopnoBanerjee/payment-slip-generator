@@ -55,7 +55,7 @@ def create_payment_slip(details, content):
 
     # Set up table style
     table_style = TableStyle([
-                               ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+                               ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
                                ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
                                ('BOTTOMPADDING', (0, 0), (-1, 0), 6),
                                ('GRID', (0, 0), (-1, -1), 1, colors.black)
@@ -126,7 +126,7 @@ def pdf_maker(no_of_emp,listy,filename):
        
     
 def generate_pdf(filename):
-    df = pd.read_csv(f"{filename}.csv")
+    df = pd.read_csv(f"./input/{filename}.csv")
     df = df.rename(columns={"Name of the employees ":"name","ESI NO":"ESI no"})
     df=df[['Emp. Code', 'Name of the employees','Actual','Basic', 'HRA ', 'conveyance', 'Washing',
            'OT', 'TOTAL','P.T.', 'P.F.', 'ESI ','Adv.', 'Total.2']]
@@ -146,6 +146,7 @@ def generate_pdf(filename):
     no_of_emp=len(list_of_emp)
        
     pdf_maker(no_of_emp,list_of_emp,filename)
+    return(f"{filename}_payslip.pdf")
     
     
     
@@ -154,4 +155,4 @@ def generate_pdf(filename):
 ''' PDF CREATION '''
 
 
-generate_pdf("salary_sheet")
+x = generate_pdf("salary_sheet")
