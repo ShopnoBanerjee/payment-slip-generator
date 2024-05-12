@@ -7,7 +7,6 @@ from reportlab.platypus import PageBreak
 from reportlab.platypus import SimpleDocTemplate
 from reportlab.lib.units import inch
 
-details=['1001', 'Sunando', 'Banerjee', '30', '13,750', '8,750', '1,250', '1,250', '-', '25,000', '130', '1,650', '-', 'nan', '1,780']
 
 
 #function for creating payment slip
