@@ -6,7 +6,7 @@ from reportlab.platypus import Spacer
 from reportlab.platypus import PageBreak
 from reportlab.lib.units import inch
 import pandas as pd
-
+import os
 
 '''ALL THE FUNCTIONS'''
 
@@ -127,9 +127,9 @@ def pdf_maker(no_of_emp,listy,filename):
     
 def generate_pdf(filename):
     df = pd.read_csv(f"./input/{filename}.csv")
-    df = df.rename(columns={"Name of the employees ":"name","ESI NO":"ESI no"})
-    df=df[['Emp. Code', 'Name of the employees','Actual','Basic', 'HRA ', 'conveyance', 'Washing',
-           'OT', 'TOTAL','P.T.', 'P.F.', 'ESI ','Adv.', 'Total.2']]
+    df = df.rename(columns={"Name of the employees ":"name","ESI NO":"ESI no",'Basic (55%)': 'Basic', 'P.F.(12%)':'P.F.','ESI (0.75%)': 'ESI ' })
+    print(df.columns)
+    df=df[['Emp. Code', 'Name of the employees','Actual','Basic', 'HRA ', 'conveyance', 'Washing','OT', 'TOTAL','P.T.', 'P.F.', 'ESI ','Adv.', 'Total.2']]
     df=df.astype(str)
     columns = [['Emp. Code', 'Name of the employees','Actual','Basic', 'HRA ', 'conveyance', 'Washing',
        'OT', 'TOTAL','P.T.', 'P.F.', 'ESI ','Adv.', 'Total.2']]

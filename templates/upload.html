@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload CSV</title>
+    <link rel="stylesheet" href="static/css/style_upload.css">
 </head>
 <body>
     <form action="/upload" method="post" enctype="multipart/form-data">
@@ -12,4 +13,41 @@
         <input type="submit" value="Upload">
     </form>
 </body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload CSV</title>
+    <link rel="stylesheet" href="static/css/style_upload.css">
+</head>
+<body style="background-color: rgb(254, 243, 236);">
+    <div class="wrapper">
+        <div class="container">
+            <img src="static/css/assets/hanglaatherium_full.png" alt="Company Logo" class="company-logo">
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <div class="button-container">
+                    <label for="fileInput" class="file-label">
+                        <span>Choose File</span>
+                        <input id="fileInput" type="file" name="file">
+                    </label>
+                </div>
+                <div class="button-container">
+                    <input type="submit" value="Upload">
+                </div>
+            </form>
+        </div>
+    </div>
+    <img src="static/css/assets/wallpaper.png" alt="function"" class="idea-logo">
+</body>
 </html>
+
+
+
+
+
+

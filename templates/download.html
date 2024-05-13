@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,4 +7,25 @@
     <body>
         <a href="/download/{{pdf}}">Download PDF</a>
     </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download PDF</title>
+    <link rel="stylesheet" href="static/css/style_download.css">
+</head>
+<body style="background-color: rgb(254, 243, 236);">
+    <div class="box-container">
+        <div class="container">
+            <img src="static/css/assets/hanglaatherium_full.png" alt="Company Logo" class="company-logo">
+            <div class="button-container"> <!-- Container for the button -->
+                <button class="download-button"><a href="/download/{{pdf}}">Download PDF</a></button>
+            </div>
+        </div>
+    </div>
+</body>
 </html>

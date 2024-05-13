@@ -1,0 +1,93 @@
+/* Reset default margin and padding */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: antiquewhite;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.container {
+    width: 80%;
+    max-width: 600px;
+    background-color: rgb(237, 30, 38);
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    position: relative; /* Add this to position the logo */
+}
+
+.company-logo {
+    width: 300px; /* Adjust size as needed */
+    position: absolute;
+    top: -75px; /* Adjust position as needed */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.idea-logo {
+    position: absolute;
+    top: 75px; /* Adjust position as needed */
+    left: 50%;
+    width: 100px; /* Adjust size as needed */
+    margin-top: 20px;
+    transform: translateX(-50%); /* Add margin to separate the image from the box */
+}
+
+
+
+/* Style the file input */
+#fileInput {
+    display: none;
+}
+
+.file-label {
+    display: inline-block;
+    padding: 20px 50px;
+    background-color: rgb(254, 243, 236); /* Blue background */
+    color: #2a2928;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.file-label span {
+    margin-right: 10px;
+}
+
+/* Style the submit button */
+input[type="submit"] {
+    padding: 15px 30px;
+    background-color: #FEF3EC; /* Red background */
+    color:#2a2928;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #cc0000; /* Darker red background on hover */
+}
+
+.button-container {
+    margin-top: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+
+
+
+

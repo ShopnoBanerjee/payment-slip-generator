@@ -1,0 +1,52 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.box-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height of the viewport */
+    background-color: rgb(254, 243, 236); /* Background color */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px; /* Add padding around the container */
+    border: 2px solid black; /* Add border */
+    border-radius: 10px; /* Add border radius */
+}
+
+.company-logo {
+    width: 200px; /* Adjust size as needed */
+}
+
+.button-container {
+    margin-top: 20px; /* Add margin to separate the button */
+}
+
+.download-button {
+    padding: 20px 40px;
+    background-color: #007bff;
+    color: #fff;
+    border: 2px solid black; /* Add black border */
+    border-radius: 10px;
+    font-size: 24px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.download-button a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.download-button:hover {
+    background-color: #0056b3;
+}
+
+
