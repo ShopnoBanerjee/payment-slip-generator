@@ -23,7 +23,7 @@ Click on the upload button
 ### Step 2
 Select the .csv file and upload
 
-<img src="https://github.com/ShopnoBanerjee/payment-slip-generator/assets/158451331/388d0b8f-885c-45b6-a59c-a4b5473b876b" alt="step 2" width="400">
+<img src="https://github.com/ShopnoBanerjee/payment-slip-generator/assets/158451331/388d0b8f-885c-45b6-a59c-a4b5473b876b" alt="step 2" width="600">
 
 ### Step 3
 Redirects to download page where you can download your pdf
