@@ -24,7 +24,7 @@ def upload_file():
     if file: 
         filename = file.filename
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        filename = filename.replace(".csv",'')
+        filename = filename.replace(".xlsx",'')
         print(filename)
         pdf = generate_pdf(filename)
         return render_template('download.html',pdf=pdf)

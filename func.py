@@ -7,6 +7,7 @@ from reportlab.platypus import PageBreak
 from reportlab.lib.units import inch
 import pandas as pd
 import os
+from datetime import datetime
 
 '''ALL THE FUNCTIONS'''
 
@@ -16,7 +17,7 @@ import os
 
 #function for creating payment slip
 def create_payment_slip(details, content):
-    # Define styles
+    #                 Define styles
     company_name_style = ParagraphStyle(
         name='Company Name',
         fontSize=14,  # You can adjust the font size as needed
@@ -29,28 +30,38 @@ def create_payment_slip(details, content):
         leading=14,
         alignment=1  # Center alignment
     )
+    # Input date string
+    date_string = details[0]
+    date_obj = datetime.strptime(date_string, '%Y-%m-%d')
+    formatted_date = date_obj.strftime('%B %Y')
 
     # Company Name
     company_name_para = Paragraph("Hanglaatherium", company_name_style)
     content.append(company_name_para)
 
     # Subheading
-    subheading_para = Paragraph("Payment Slip", subheading_style)
+    subheading_para = Paragraph("Payment Slip of :" + " " + formatted_date, subheading_style)
     content.append(subheading_para)
+    
+    spacer = Spacer(1, 15)
+    content.append(spacer)
 
-    content.append(Paragraph("Name: "+details[1]+" "+details[2], ParagraphStyle(name='Normal')))
-    content.append(Paragraph("Emp code: "+details[0], ParagraphStyle(name='Normal')))
-    content.append(Paragraph("Total Working Days: "+details[3], ParagraphStyle(name='Normal')))
+    content.append(Paragraph("Name: "+details[1]+" "+details[2], ParagraphStyle(name='Normal',alignment=1)))
+    content.append(Paragraph("UAN: "+details[3], ParagraphStyle(name='Normal', alignment=1)))
+    content.append(Paragraph("Total Working Days: "+details[4], ParagraphStyle(name='Normal',alignment=1)))
+    
+    spacer = Spacer(1, 15)
+    content.append(spacer)
     
     # Create the table
     table_data = [
         ["Earnings", "Deductions"],
-        ["Basic : "+details[4], "P.T. : "+details[10]],
-        ["HRA : "+details[5], "P.F. : "+details[11]],
-        ["Conveyance : "+details[6], "ESI : "+details[12]],
-        ["Washing : "+details[7], "Advance : "+details[13]],
-        ["Overtime + "+details[8], "Total Deductions : "+details[14]],
-        ["Total Earnings : "+details[9] , ""],
+        ["Basic : "+ details[5], "P.T. : "+ details[11]],
+        ["HRA : "+ details[6], "P.F. : "+ details[12]],
+        ["Conveyance : "+ details[7], "ESI : "+ details[13]],
+        ["Washing : "+ details[8], "Advance : "+ details[14]],
+        ["Overtime :"+ details[9], "Total Deductions : "+ details[15]],
+        ["Total Earnings : "+ details[10] , "Net Salary : "+ details[16]],
     ]
 
     # Set up table style
@@ -66,14 +77,16 @@ def create_payment_slip(details, content):
     earnings_table.setStyle(table_style)
     content.append(earnings_table)
 
-    details[9] = details[9].replace(",",'')
-    details[14] = details[14].replace(",",'')
+    # details[10] = details[10].replace(",",'')
+    # details[15] = details[15].replace(",",'')
     
-    content.append(Paragraph("Net Salary : "+ str(int(details[9])-int(details[14])), ParagraphStyle(name='Normal')))
-
-    spacer = Spacer(1, 10)
+    # content.append(Paragraph("Net Salary : "+ details[16])), ParagraphStyle(name='Normal')))
+    spacer = Spacer(1, 30)
     content.append(spacer)
 
+
+
+    
 #what i want is that i create in a systematic form and that every 3 creations there is a pagebreak
 #total creations are suppose 30 i.e total employees whose payslips are to be made are 30 so 
 def pdf_maker(no_of_emp,listy,filename):
@@ -116,23 +129,29 @@ def pdf_maker(no_of_emp,listy,filename):
                 j=j+1
                 create_payment_slip(listy[j],content)
                 j=j+1
-        content.append(PageBreak())
+                content.append(PageBreak())
+                
         create_payment_slip(listy[j],content)
         j=j+1
         create_payment_slip(listy[j],content)
         j=j+1
     
     doc.build(content)   
+
+
        
     
 def generate_pdf(filename):
-    df = pd.read_csv(f"./input/{filename}.csv")
-    df = df.rename(columns={"Name of the employees ":"name","ESI NO":"ESI no",'Basic (55%)': 'Basic', 'P.F.(12%)':'P.F.','ESI (0.75%)': 'ESI ' })
-    print(df.columns)
-    df=df[['Emp. Code', 'Name of the employees','Actual','Basic', 'HRA ', 'conveyance', 'Washing','OT', 'TOTAL','P.T.', 'P.F.', 'ESI ','Adv.', 'Total.2']]
+    df = pd.read_excel(f"./input/{filename}.xlsx")
+    df = df.rename(columns={'Net Payment (Take Home)': 'Net Payment'})
+    df=df[['Month & Year', 'Name of the employees','UAN no','Actual','Basic', 'HRA', 'conveyance', 'Washing','Extra', 'TOTAL','P.T.', 'P.F.(12%)', 'ESI (0.75%)','Adv.', 'Total deduction', 'Net Payment']]
     df=df.astype(str)
-    columns = [['Emp. Code', 'Name of the employees','Actual','Basic', 'HRA ', 'conveyance', 'Washing',
-       'OT', 'TOTAL','P.T.', 'P.F.', 'ESI ','Adv.', 'Total.2']]
+    df['Adv.'] = df['Adv.'].str.replace('nan','-')
+    
+    columns = [['Month & Year', 'Name of the employees','UAN no',
+            'Actual','Basic', 'HRA', 'conveyance', 'Washing','Extra', 'TOTAL',
+            'P.T.', 'P.F.(12%)', 'ESI (0.75%)','Adv.', 'Total deduction','Net Payment']]
+    
     list_of_emp=[]
     for index, row in df.iterrows():
         words=" "
@@ -154,5 +173,5 @@ def generate_pdf(filename):
 
 ''' PDF CREATION '''
 
-
+generate_pdf('April 2024 salary sheet (1)')
 
