@@ -42,6 +42,5 @@ Your pdf file is created
 <img src="https://github.com/ShopnoBanerjee/payment-slip-generator/assets/158451331/bad73891-5c77-4fb0-98c3-f58a6e65c7e8" alt="step 4" width="300">
 
 ### pdf payslips
-https://github.com/ShopnoBanerjee/payment-slip-generator/assets/158451331/59e13616-aceb-43db-aa70-f87c03ee74a2)
 
 <img src="https://github.com/ShopnoBanerjee/payment-slip-generator/assets/158451331/59e13616-aceb-43db-aa70-f87c03ee74a2" alt="pdf file" width="600">
