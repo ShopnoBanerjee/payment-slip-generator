@@ -60,7 +60,7 @@ def create_payment_slip(details, content):
         ["HRA : "+ details[6], "P.F. : "+ details[12]],
         ["Conveyance : "+ details[7], "ESI : "+ details[13]],
         ["Washing : "+ details[8], "Advance : "+ details[14]],
-        ["Overtime :"+ details[9], "Total Deductions : "+ details[15]],
+        ["Overtime : "+ details[9], "Total Deductions : "+ details[15]],
         ["Total Earnings : "+ details[10] , "Net Salary : "+ details[16]],
     ]
 
@@ -173,5 +173,4 @@ def generate_pdf(filename):
 
 ''' PDF CREATION '''
 
-generate_pdf('April 2024 salary sheet (1)')
 
