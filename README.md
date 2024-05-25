@@ -9,7 +9,9 @@
 
 ## Excel sheet
 
-<img src="https://github.com/ShopnoBanerjee/payment-slip-generator/assets/158451331/bf169982-6de0-4583-bcd4-6619a8d42bac" alt="excel" width="400">
+The orange columns mark the columns that are present in the payment slips.
+
+<img src="https://github.com/ShopnoBanerjee/payment-slip-generator/assets/158451331/4590b720-c41c-41f4-8db1-d40cba9cc6d6" alt="excel" width="400">
 
 ### Step 0
 
@@ -25,7 +27,7 @@ Click on the upload button
 
 Select the .xlsx file and upload
 
-<img src="https://github.com/ShopnoBanerjee/payment-slip-generator/assets/158451331/388d0b8f-885c-45b6-a59c-a4b5473b876b" alt="step 2" width="600">
+<img src="https://github.com/ShopnoBanerjee/payment-slip-generator/assets/158451331/e8ad5dbe-769f-4a5c-a6b4-6d4efec47e9e" alt="step 2" width="600">
 
 ### Step 3
 
