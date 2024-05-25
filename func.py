@@ -8,6 +8,7 @@ from reportlab.lib.units import inch
 import pandas as pd
 import os
 from datetime import datetime
+import numpy as np
 
 '''ALL THE FUNCTIONS'''
 
@@ -46,9 +47,9 @@ def create_payment_slip(details, content):
     spacer = Spacer(1, 15)
     content.append(spacer)
 
-    content.append(Paragraph("Name: "+details[1]+" "+details[2], ParagraphStyle(name='Normal',alignment=1)))
-    content.append(Paragraph("UAN: "+details[3], ParagraphStyle(name='Normal', alignment=1)))
-    content.append(Paragraph("Total Working Days: "+details[4], ParagraphStyle(name='Normal',alignment=1)))
+    content.append(Paragraph("Name : "+details[1]+" "+details[2], ParagraphStyle(name='Normal',alignment=1)))
+    content.append(Paragraph("UAN : "+details[3], ParagraphStyle(name='Normal', alignment=1)))
+    content.append(Paragraph("ESI no. : "+details[4], ParagraphStyle(name='Normal',alignment=1)))
     
     spacer = Spacer(1, 15)
     content.append(spacer)
@@ -60,7 +61,7 @@ def create_payment_slip(details, content):
         ["HRA : "+ details[6], "P.F. : "+ details[12]],
         ["Conveyance : "+ details[7], "ESI : "+ details[13]],
         ["Washing : "+ details[8], "Advance : "+ details[14]],
-        ["Overtime : "+ details[9], "Total Deductions : "+ details[15]],
+        ["Extra : "+ details[9], "Total Deductions : "+ details[15]],
         ["Total Earnings : "+ details[10] , "Net Salary : "+ details[16]],
     ]
 
@@ -144,12 +145,13 @@ def pdf_maker(no_of_emp,listy,filename):
 def generate_pdf(filename):
     df = pd.read_excel(f"./input/{filename}.xlsx")
     df = df.rename(columns={'Net Payment (Take Home)': 'Net Payment'})
-    df=df[['Month & Year', 'Name of the employees','UAN no','Actual','Basic', 'HRA', 'conveyance', 'Washing','Extra', 'TOTAL','P.T.', 'P.F.(12%)', 'ESI (0.75%)','Adv.', 'Total deduction', 'Net Payment']]
+    df=df[['Month & Year', 'Name of the employees','UAN no','ESI NO','Basic', 'HRA', 'conveyance', 'Washing','Extra', 'TOTAL','P.T.', 'P.F.(12%)', 'ESI (0.75%)','Adv.', 'Total deduction', 'Net Payment']]
+    df['ESI NO'] = df['ESI NO'].apply(lambda x: '{:.0f}'.format(x) if np.isfinite(x) and x.is_integer() else (str(x) if np.isfinite(x) else 'N/A'))
     df=df.astype(str)
     df['Adv.'] = df['Adv.'].str.replace('nan','-')
     
     columns = [['Month & Year', 'Name of the employees','UAN no',
-            'Actual','Basic', 'HRA', 'conveyance', 'Washing','Extra', 'TOTAL',
+            'ESI NO','Basic', 'HRA', 'conveyance', 'Washing','Extra', 'TOTAL',
             'P.T.', 'P.F.(12%)', 'ESI (0.75%)','Adv.', 'Total deduction','Net Payment']]
     
     list_of_emp=[]
@@ -172,5 +174,4 @@ def generate_pdf(filename):
     
 
 ''' PDF CREATION '''
-
-
+generate_pdf("salary sheet template")
